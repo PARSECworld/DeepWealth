@@ -1,64 +1,92 @@
-## Using publicly available satellite imagery and deep learning to understand economic well-being in Africa
+<!-- badges: start -->
 
-This repository includes the code and data necessary to reproduce the results and figures for the article "Using publicly available satellite imagery and deep learning to understand economic well-being in Africa" published in *Nature Communications* on May 22, 2020 ([link](https://www.nature.com/articles/s41467-020-16185-w)).
+[![License: MIT](https://badgen.net/badge/MIT/blue)](https://choosealicense.com/licenses/mit/)
 
-Please cite this article as follows, or use the BibTeX entry below.
+<!-- badges: end -->
 
-> Yeh, C., Perez, A., Driscoll, A. *et al*. Using publicly available satellite imagery and deep learning to understand economic well-being in Africa. *Nat Commun* **11**, 2583 (2020). https://doi.org/10.1038/s41467-020-16185-w
+# DeepWealth
 
-```tex
-@article{yeh2020using,
-    author = {Yeh, Christopher and Perez, Anthony and Driscoll, Anne and Azzari, George and Tang, Zhongyi and Lobell, David and Ermon, Stefano and Burke, Marshall},
-    day = {22},
-    doi = {10.1038/s41467-020-16185-w},
-    issn = {2041-1723},
-    journal = {Nature Communications},
-    month = {5},
-    number = {1},
-    title = {{Using publicly available satellite imagery and deep learning to understand economic well-being in Africa}},
-    url = {https://www.nature.com/articles/s41467-020-16185-w},
-    volume = {11},
-    year = {2020}
-}
-```
+## Required software and library
 
+The main software used was Python 3.7 with TensorFlow r1.15.
+The complete list of required packages and library are listed in the `Deepwealth.yml` (conda env create -f Deepwealth.yml) file (it need to install 'conda')
 
-## Hardware and Software Requirements
+## Summary
 
-This code was tested on a system with the following specifications:
+The aim of the DeepWealth  is to propose a Generalizable Deep Learning Framework to use Satellite Images for Poverty Estimation.
 
-- operating system: Ubuntu 16.04.6 LTS
-- CPU: Intel Xeon Silver 4110
-- memory (RAM): 125GB
-- disk storage: 500GB
-- GPU: 1x NVIDIA Titan Xp
+- [X] The integration of Deep Learning and Earth Observation data is being increasingly used to estimate socioeconomic conditions at regional and global levels.
+- [X] The relevance of socioeconomic conditions mapping for various purposes such as determining earth system impacts and urban planning.
+- [X] The introduction of the DeepWealth framework aligning with the Sustainable Development Goal (SDG1) of ending poverty
+- [X] Providing open-source data, code, and training models (checkpoints) for reproducibility and replicability.
 
-The main software requirements are Python 3.7 with TensorFlow r1.15, and R 3.6. The complete list of required packages and library are listed in the `env.yml` file, which is meant to be used with `conda` (version 4.8.3). See [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/) for instructions on installing conda via Miniconda. Once conda is installed, run the following command to set up the conda environment:
+## Workflow
 
-```bash
-conda env create -f env.yml
-```
+The code was split into three primary components. The data and scripts available on the DeepWealth data repository are held in 3 folders:
 
-If you are using a GPU, you may need to also install CUDA 10 and cuDNN 7.
+- [X] **(A)** 'R scripts' for generating the geographic  coordinates at a scale of ~6 km2 in each study area and for wealth index construction from available surveys
+- [X] **(B)** 'Python scripts' providing all notebook scripts to enable reproduction and replication of the poverty estimation pipeline, and
+- [X] **(C)**'Checkpoints' for the trained models for both multispectral and nighlight satellites images  to be used for future case studies.
 
+<img src="fig1.png" width="850">
 
-## Data Preparation Instructions
+### Data
 
-1. **Export satellite images from Google Earth Engine.** Follow the instructions in the `download/export_ee_images.ipynb` notebook.
-2. **Process the satellite images.** Follow the instructions in the `preprocessing/process_tfrecords_dhs.ipynb` and `preprocessing/process_tfrecords_lsms.ipynb` notebooks. Then run the `preprocessing/analyze_tfrecords_dhs.ipynb` and `preprocessing/analyze_tfrecords_lsms.ipynb` notebooks.
-3. **Prepare the data files.** Follow the instructions in the `data_analysis/dhs.ipynb` and `data_analysis/lsms.ipynb` notebooks.
+***Geographic location***
 
+- ~37000 African villages in 24 countries (Angola, Benin, Burkina Faso, Cameroon, Cote d'Ivoire, Democratic Republic of Congo, Ethiopia, Ghana, Guinea, Kenya, Lesotho, Malawi, Mali, Mozambique, Nigeria, Madagascar, Rwanda, Senegal, Sierra Leone, Tanzania, Togo, Uganda, Zambia, and Zimbabwe).
+- 92 surveys from DHS conducted between the years 1996 and 2019.
+  ***Datasets***
 
-## Model Training Instructions
+- [X] ***Dataset title:*** Wealth index constructed from the Demographic and Health Surveys(DHS), ***Dataset DOI or URL:*** https://dhsprogram.com/data/available-datasets.cfm
+- [X] ***Dataset title:*** LANDSAT/LC08/C01/T1_SR, LANDSAT/LE07/C01/T1_SR, LANDSAT/LT05/C01/T1_SR, NOAA/DMSP-OLS/CALIBRATED_LIGHTS_V4, NOAA/VIIRS/DNB/MONTHLY_V1/VCMSLCFG, ***Dataset DOI or URL:***  https://earthengine.google.com/
+- [X] ***Dataset title:*** ResNet-18 architecture (v2, with preactivation on Imagenet), ***Dataset DOI or URL:*** https://doi.org/10.48550/arXiv.1603.05027
 
-1. **Run the baseline linear models.** Follow the instructions in `models/dhs_baselines.ipynb`, `models/lsms_baselines.ipynb`, , and `models/lsmsdelta_baselines.ipynb`.
-2. **Train the convolutional neural network models.** If running this code on a SLURM-enabled computing cluster, run the scripts `train_directly_runner.py` and `train_directly_lsm_runner.py`. Otherwise, run `train_directly.py` and `train_delta.py` with the desired command-line arguments to set hyperparameters.
-3. **Extract learned feature representations.** Run the scripts `extract_features_dhs.py` and `extract_features_lsmsdelta.py`.
-4. **Run cross-validated ridge-regression.** Follow the instructions in `models/dhs_ridge_resnet.ipynb` and `model_analysis/lsmsdelta_resnet.ipynb`.
+### Wealth Index Construction
 
+Wealth index construction: The wealth index was constructed from the first principal component of the DHS responses using the principal component analysis (PCA). It included the number of rooms occupied in a house, whether the house has electricity, the quality of flooring in the house, water       supply and whether the house has a toilet, ownership of a telephone, radio, television, cars, and motorcycles.
 
-## To reproduce figs:
+### Deep Learning estimation model
 
-All necessary scripts should be in code_figs, and all necessary data should be in data. We included data of the summary stats for plotting, since the full microdata cannot be released. A few changes have been made to data and code to fix errors in plots. Code has been updated to fix an artificially inflated revisit rate for DigitalGlobe in Figure 1. Changes were made to the data on survey frequency used for Figure 1.
+a Deep Learning (DL) methodology to understand economic well-being. It estimated the wealth index from multi-spectral satellite imagery using DL techniques. A pre-trained CNN model based on Resnet-18 architecture was used
 
-For the maximally-activating activation maps, see the `model_analysis/max_activating.ipynb` notebook.
+### Scripts
+
+**See in  `src/Python/steps`**
+
+- [X] 0_Download.ipynb: Download the satellite images based on the wealth index csv file
+- [X] 1_process_tfrecords.ipynb: Split the  downloaded TFrecords file by country_year_villages
+  using the csv file
+- [X] 2_create_incountry_folds.ipynb: Split the data into five folds using incountry configuration (based on the distance between villages in order to avoid the overlapping of the satellite image).
+- [X] 3_dhs_baslines.ipynb: Generate a .npz file that resumes the Night Light images features (center, mean, etc.) Run the machine learning baselines
+- [X] 4_dhs.ipynb: Generate a DataFrame that merges the .npz file generated in step 3 with the original csv file
+- [X] 5_train.ipynb: Contains all training scripts for all configurations
+- [X] 6_dhs_resnet_ridge.ipynb: Apply a ridge regression to concatenate the Resnet-MS and Resnet-NL
+- [X] 7_dhs_incountry.ipynb: Calculate the performance metrics for all configuration
+- [X] 8_test.ipynb: Test the training models for new villages
+
+**See in `src/R/Wealth_index_construction`**
+
+- [X] Wealth_index_construction: Construct the wealth index from the DHS surveys
+
+**See in `src/R/Grid/mada`**
+
+- [X] Grid_script: Calculate the (lat, lon) for a given country with a pixel ~6 km2
+
+## Outputs
+
+### Case 1: Madagascar
+
+We focused on the entire country of Madagascar. Specifically, we downloaded the shapefile from (https://gadm.org/). We used a ([script](src/R/Grid/mada/grid_script.R)) to divide the map into pixels of approximately 36 km2. We generated 20,427 villages, with the dataset available in ([dataset](data/Madagascar)). This dataset includes the latitude and longitude from the centroids of each village, also known as clusters.
+
+### Case 2: Brazil
+
+We focused on Vale do Ribeira located in the southern region of Brazil. Specifically we downloaded the shapefile from IBGE (Brazilian Institute of Geography and Statistics) containing the 880 census tracts ([dataset](data/Brazil/VR_clusters.csv)). This dataset contains the lat/lon from the centroids of each census tracts and their corresponding HDI-income(Human Development Index) value that was obtained from by Machicao et al. [14] ([DOI](https://doi.org/10.5334/dsj-2022-006)). The income was used for validate DeepWealth, the Pearson correlation obtained was R2 = 0.53 ([see](data/Brazil/suppMaterialS1.xlsx)).
+
+### Case 3: Japan
+
+For Japan case, we concentrated in Kita-Tōhoku region, the northernmost part of Honshū Island. We used 15 municipalities (most of them with less than 20,000 population). For this area, we collected information from a total of 517 census tracts (city/rural block) ([dataset](data/Japan/JP_clusters.csv)). This dataset contains the lat/lon from their centroids. For validation, we calculated the average estimation from each municipality and calculated Pearson correlation using two indicators: Human Development Index (HDI-income) and Taxable Income Per Taxpayer (TXI). The Pearson correlation obtained was R2 = 0.64 and R2 = 0.51, respectively ([see](data/Japan/suppMaterialS2.xlsx)).
+
+## Trained models (checkpoints)
+
+The checkpoints can be found separately (due to size restrictions) ([DOI](https://doi.org/10.5281/zenodo.10575637])).
