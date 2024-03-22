@@ -1,44 +1,52 @@
-DHS_COUNTRIES = ['angola', 'benin', 'burkina_faso', 'cameroon', 'cote_d_ivoire','democratic_republic_of_congo', 'ethiopia', 'ghana', 'guinea', 'kenya','lesotho', 'madagascar', 'malawi', 'mali', 'mozambique', 'nigeria', 'rwanda', 'senegal', 'sierra_leone', 'tanzania', 'togo', 'uganda', 'zambia', 'zimbabwe'],
+DHS_COUNTRIES = ['angola', 'benin', 'burkina_faso', 'cameroon', 'cote_d_ivoire','democratic_republic_of_congo', 'ethiopia', 'ghana', 'guinea', 'kenya','lesotho', 'madagascar', 'malawi', 'mali', 'mozambique', 'nigeria', 'rwanda', 'senegal', 'sierra_leone', 'tanzania', 'togo', 'uganda', 'zambia', 'zimbabwe', 'comores'],
 
 
 #OOC folds
-#A 'cameroon', 'ethiopia', 'ghana', 'guinea','senegal','togo',  7252
-#B 'burkina_faso','lesotho','madagascar', 'tanzania','zimbabwe', 7112
-#C 'angola', 'benin', 'mali','malawi', 'zambia', 7291
-#D 'democratic_republic_of_congo', 'mozambique', 'nigeria', 'rwanda', 7206
-#E  'kenya','cote_d_ivoire', 'sierra leone','uganda', 7067
-
+#A 'ethiopia', 'ghana', 'guinea','mali','senegal',  7115
+#B 'burkina_faso','lesotho','madagascar', 'tanzania','zimbabwe' 7185
+#C 'angola', 'benin', 'cameroon','malawi', 'zambia' 7057
+#D 'democratic_republic_of_congo', 'mozambique', 'nigeria', 'rwanda', 'togo', 7206
+#E  'kenya','cote_d_ivoire', 'sierra leone','uganda', 7120
 
 
 
 _SURVEY_NAMES_DHS_OOC_A = {
-    'train': ['angola', 'benin', 'mali','malawi', 'zambia', 'democratic_republic_of_congo', 'mozambique', 'nigeria', 'rwanda',
-             'kenya','cote_d_ivoire', 'sierra_leone','uganda'],
+    'train': ['angola', 'benin', 'cameroon','malawi', 'zambia',
+             'democratic_republic_of_congo', 'mozambique', 'nigeria', 'rwanda', 'togo',
+             'kenya','cote_d_ivoire', 'sierra_leone','uganda','comores'],
     'val': ['burkina_faso','lesotho','madagascar', 'tanzania','zimbabwe'],
-    'test': ['cameroon', 'ethiopia', 'ghana', 'guinea','senegal','togo'],
+    'test': ['ethiopia', 'ghana', 'guinea','mali','senegal'],
 }
 _SURVEY_NAMES_DHS_OOC_B = {
-    'train': ['cameroon', 'ethiopia', 'ghana', 'guinea','senegal','togo','democratic_republic_of_congo', 'mozambique', 'nigeria', 'rwanda', 'kenya','cote_d_ivoire', 'sierra_leone','uganda'],
-    'val': ['angola', 'benin', 'mali','malawi', 'zambia'],
+    'train': ['ethiopia', 'ghana', 'guinea','mali','senegal',
+              'democratic_republic_of_congo', 'mozambique', 'nigeria', 'rwanda', 
+              'togo','kenya','cote_d_ivoire', 'sierra_leone','uganda'],
+    'val': ['angola', 'benin', 'cameroon','malawi', 'zambia','comores'],
     'test': ['burkina_faso','lesotho','madagascar', 'tanzania','zimbabwe'],
 }
 _SURVEY_NAMES_DHS_OOC_C = {
-    'train': ['cameroon', 'ethiopia', 'ghana', 'guinea','senegal','togo', 'burkina_faso','lesotho','madagascar', 'tanzania','zimbabwe', 'kenya','cote_d_ivoire', 'sierra_leone','uganda'],
-    'val': ['democratic_republic_of_congo', 'mozambique', 'nigeria', 'rwanda'],
-    'test': ['angola', 'benin', 'mali','malawi', 'zambia'],
-} 
+    'train': ['ethiopia', 'ghana', 'guinea','mali','senegal',
+             'burkina_faso','lesotho','madagascar', 'tanzania','zimbabwe',
+             'kenya','cote_d_ivoire', 'sierra_leone','uganda'],
+    'val': ['democratic_republic_of_congo', 'mozambique', 'nigeria', 'rwanda', 'togo'],
+    'test': ['angola', 'benin', 'cameroon','malawi', 'zambia', 'comores'],
+}
 _SURVEY_NAMES_DHS_OOC_D = {
-    'train': ['cameroon', 'ethiopia', 'ghana', 'guinea','senegal','togo', 'burkina_faso','lesotho','madagascar', 'tanzania','zimbabwe', 'angola', 'benin', 'mali','malawi', 'zambia'],
+    'train': ['ethiopia', 'ghana', 'guinea','mali','senegal',
+             'burkina_faso','lesotho','madagascar', 'tanzania','zimbabwe',
+             'angola', 'benin', 'cameroon','malawi', 'zambia', 'comores'],
     'val': ['kenya','cote_d_ivoire', 'sierra_leone','uganda'],
-    'test': ['democratic_republic_of_congo', 'mozambique', 'nigeria', 'rwanda'],
+    'test': ['democratic_republic_of_congo', 'mozambique', 'nigeria', 'rwanda', 'togo'],
 }
 
 
 _SURVEY_NAMES_DHS_OOC_E = {
-    'train': ['burkina_faso','lesotho','madagascar', 'tanzania','zimbabwe', 'angola', 'benin', 'mali','malawi', 'zambia',
-             'democratic_republic_of_congo', 'mozambique', 'nigeria', 'rwanda'],
-    'val': ['cameroon', 'ethiopia', 'ghana', 'guinea','senegal','togo'],
+    'train': ['burkina_faso','lesotho','madagascar', 'tanzania','zimbabwe',
+             'angola', 'benin', 'cameroon','malawi', 'zambia',
+             'democratic_republic_of_congo', 'mozambique', 'nigeria', 'rwanda', 'togo','comores'],
+    'val': ['ethiopia', 'ghana', 'guinea','mali','senegal'],
     'test': ['kenya','cote_d_ivoire', 'sierra_leone','uganda'],
+
 }
 
 SURVEY_NAMES = {  
@@ -50,25 +58,50 @@ SURVEY_NAMES = {
     
 }
 
-davidtest=["Tanzania_1996", "Tanzania_1999","Tanzania_2001",]
+#davidtest= ["comores_2002", "comores_2003", "comores_2004", "comores_2005","comores_2006",
+           #"comores_2007", "comores_2008", "comores_2009", "comores_2010","comores_2011",
+           #"comores_2012", "comores_2013", "comores_2014", "comores_2015","comores_2016",
+           #"comores_2017", "comores_2018", "comores_2019", "comores_2020","comores_2021", 
+           #"mozambique_2002", "mozambique_2003", "mozambique_2004", "mozambique_2005","mozambique_2006",
+           #"mozambique_2007", "mozambique_2008", "mozambique_2009", "mozambique_2010","mozambique_2011",
+           #"mozambique_2012", "mozambique_2013", "mozambique_2014", "mozambique_2015","mozambique_2016",
+           #"mozambique_2017", "mozambique_2018", "mozambique_2019", "mozambique_2020","mozambique_2021", "tanzania_2002",                  #"tanzania_2003", "tanzania_2004", "tanzania_2005","tanzania_2006",
+           #"tanzania_2007", "tanzania_2008", "tanzania_2009", "tanzania_2010","tanzania_2011",
+           #"tanzania_2012", "tanzania_2013", "tanzania_2014", "tanzania_2015","tanzania_2016",
+           #"tanzania_2017", "tanzania_2018", "tanzania_2019", "tanzania_2020","tanzania_2021", 
+           #"madagascar_2002", "madagascar_2003", "madagascar_2004", "madagascar_2005","madagascar_2006",
+           #"madagascar_2007", "madagascar_2008", "madagascar_2009", "madagascar_2010","madagascar_2011",
+           #"madagascar_2012", "madagascar_2013", "madagascar_2014", "madagascar_2015","madagascar_2016",
+           #"madagascar_2017", "madagascar_2018", "madagascar_2019", "madagascar_2020","madagascar_2021"]
 
-#davidtest=["Madagascar_2012","Madagascar_2015","Madagascar_2020",
-           #"Mozambique_2012","Mozambique_2015","Mozambique_2020",                                   #"Tanzania_2012","Tanzania_2015","Tanzania_2020",]
-    
+#davidtest= ["Brazil_2000","Brazil_2001","Brazil_2002","Brazil_2003","Brazil_2004","Brazil_2005","Brazil_2006",
+           #"Brazil_2007","Brazil_2008","Brazil_2009","Brazil_2010","Brazil_2011","Brazil_2012","Brazil_2013",
+           #"Brazil_2014","Brazil_2015","Brazil_2016","Brazil_2017","Brazil_2018","Brazil_2019","Brazil_2020",
+           #"Brazil_2021"]
+            
+            
+davidtest= ["Australie_1996","Australie_2001","Australie_2011","Australie_2012","Australie_2016",]
+
+ 
+ #change all to 36182 because we have deleted comores from the training 36424-242=36182
+
+
 SIZES = {
-    'DHS_OOC_A': {'train':21564, 'val':7112 , 'test':7252 , 'all': 35928},
-    'DHS_OOC_B': {'train':21525, 'val':7291 , 'test':7112 , 'all': 35928},
-    'DHS_OOC_C': {'train':21431, 'val':7206 , 'test':7291 , 'all': 35928},
-    'DHS_OOC_D': {'train':21655, 'val':7067 , 'test':7206 , 'all': 35928},
-    'DHS_OOC_E': {'train':21609, 'val':7252 , 'test':7067 , 'all': 35928},
-    'DHS_incountry_A': {'train':21556  , 'val':7186 , 'test':7186 , 'all': 35928},
-    'DHS_incountry_B':{'train':21556 , 'val':7186  , 'test':7186 , 'all': 35928},
-    'DHS_incountry_C': {'train':21557 , 'val':7185 , 'test':7186 , 'all': 35928},
-    'DHS_incountry_D': {'train':21558 , 'val':7185 , 'test':7185 , 'all': 35928},
-    'DHS_incountry_E': {'train':21557 , 'val':7186 , 'test':7185 , 'all': 35928},
+    'DHS-ALL': {'train': 24798, 'val': 5057, 'test': 6057, 'all': 36424},    
+    'DHS_OOC_A': {'train':22124 , 'val': 7185, 'test': 7115, 'all': 36424},
+    'DHS_OOC_B': {'train': 21940, 'val': 7299, 'test': 7185, 'all': 36424},
+    'DHS_OOC_C':  {'train':21420 , 'val': 7705, 'test': 7299, 'all': 36424},
+    'DHS_OOC_D':  {'train':21599 , 'val': 7120, 'test': 7705, 'all': 36424},
+    'DHS_OOC_E': {'train': 22189, 'val': 7115, 'test': 7120, 'all': 36424},
+    'DHS_incountry_A': {'train': 21854 , 'val': 7285, 'test': 7285, 'all': 36424},
+    'DHS_incountry_B': {'train': 21854, 'val': 7285 , 'test': 7285, 'all': 36424},
+    'DHS_incountry_C': {'train': 21854, 'val': 7285, 'test': 7285, 'all': 36424},
+    'DHS_incountry_D': {'train': 21855, 'val': 7284, 'test': 7285, 'all': 36424},
+    'DHS_incountry_E': {'train': 21855, 'val': 7285, 'test': 7284, 'all': 36424},
     
-}  
-        
+}
+
+   
     
     
     
