@@ -90,3 +90,80 @@ For Japan case, we concentrated in Kita-Tōhoku region, the northernmost part of
 ## Trained models (checkpoints)
 
 The checkpoints can be found separately (due to size restrictions) ([DOI](https://doi.org/10.5281/zenodo.10575637])).
+
+---
+
+
+---
+
+
+## Tutorial to configureate an AWS EC2 Setup with TensorFlow 1.15.5 
+
+This guide will help you create an EC2 instance on AWS using the Amazon Deep Learning AMI and set up a Python 3.7 environment with TensorFlow 1.15.5, as pre-requisites for DeepWealth.
+
+### Prerequisites 
+*   An AWS account
+*   AWS CLI configured on your local machine
+
+### Step 1: Launch an EC2 Instance 
+
+1.  **Log in to AWS Management Console:** Go to the [AWS Management Console](https://aws.amazon.com/console/), and navigate to EC2 Dashboard.
+    
+2.  **Launch Instance:** Click on the "Launch Instance" button.
+    
+3.  **Choose an Amazon Machine Image (AMI):**
+    
+*  **Search for the "Deep Learning AMI"** in the AWS EC2 console search bar. These Amazon Machine Images (AMIs) are specifically built and optimized for building, training, debugging, and serving deep learning models in EC2. They come pre-configured with popular frameworks such as TensorFlow, MXNet, PyTorch, and more.
+    
+* **Choose a suitable AMI**:
+    
+    *   For example, select  **Amazon Deep Learning AMI (Amazon Linux 2) Version 60.2 (ami-0b5c0921a4f222d9a)**. This AMI includes the Nvidia Driver and an updated version of TensorFlow, along with other essential packages already installed.
+    *   Note: As of 2024, AWS no longer hosts earlier versions of TensorFlow, as they have been deprecated. However, by using this AMI, you ensure that your instance has GPU support. We will then downgrade TensorFlow to version 1.15.5.
+4.  **Choose an Instance Type:**
+    
+    *   Select an instance type that includes a GPU, such as `g4dn.xlarge` .
+5.  **Configure Instance Details:**
+    
+    *   Adjust the settings as needed for your use case.
+    *   Ensure you have a suitable VPC and subnet selected.
+6.  **Add Storage:**
+    
+    *   The default storage settings should suffice (depending on the images size, we recommend more than 50GB), but you can adjust as needed.
+7.  **Add Tags:**
+    
+    *   (Optional) Add any tags to help manage your instances.
+8.  **Configure Security Group:**
+    
+    *   Create a new security group or select an existing one.
+    *   Ensure you have rules to allow SSH (port 22) access. Also donwload the `your-key-pair.pem`.
+9.  **Review and Launch:**
+    
+    *   Review your settings and click "Launch".
+    *   Select an existing key pair or create a new one to SSH into your instance.
+
+### Step 2: Connect to the EC2 Instance via SSH 
+       
+    `ssh -i /path/to/your-key-pair.pem ec2-user@your-ec2-instance-public-dns`
+    
+
+### Step 3: Set Up Python Environment with TensorFlow 1.15.5 
+1. Use `pip` to install and manage your Python environment.
+    *   Create and activate a new Python virtual environment:
+                
+        `python3 -m venv myenv source myenv/bin/activate`
+        
+    *   Install Python 3.7 within the environment:
+               
+        `pip install python==3.7`
+        
+    *   Install TensorFlow 1.15.5:
+         
+        `pip install tensorflow==1.15.5`
+        
+    
+2.  **Verify the Installation:**
+     
+    `python -c "import tensorflow as tf; print(tf.__version__)"`
+    
+    You should see `1.15.5` as the output.
+     
