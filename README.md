@@ -160,6 +160,22 @@ This guide will help you create an EC2 instance on AWS using the Amazon Deep Lea
          
         `pip install tensorflow==1.15.5`
         
+   *   Install all Required packages and library
+         `pip install tensorflow==1.15.5`
+          `conda install -c conda-forge tensorflow-gpu=1.15`
+          `conda install -c conda-forge tqdm`
+          `conda install -c anaconda seaborn`
+          `conda install -c anaconda pillow`
+          `conda install -c conda-forge sklearn`
+          `conda install -c conda-forge mypy`
+          `conda install -c conda-forge matplotlib`
+          `conda install -c conda-forge jupyterlab`
+          `conda install -c conda-forge jupyter_contrib_nbextensions`
+          `conda install geopandas`
+          `conda install -c anaconda flake8`
+          `conda install -c conda-forge cartopy=0.18.0`
+          `conda install -c conda-forge earthengine-api`
+
     
 2.  **Verify the Installation:**
      
