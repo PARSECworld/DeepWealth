@@ -5,7 +5,26 @@
 <!-- badges: end -->
 
 # DeepWealth
+## How to cite?
+Please cite this manuscript as follows, or use the BibTeX entry below.
 
+> Ben Abbes, A., Machicao, J., Corrêa, P. L. P., *et al* (2024). DeepWealth: A generalizable open-source deep learning framework using satellite images for well-being estimation. In _SoftwareX_ (Vol. 27, p. 101785). https://doi.org/10.1016/j.softx.2024.101785
+
+```tex
+@article{BenAbbes2024,
+  title = {DeepWealth: A generalizable open-source deep learning framework using satellite images for well-being estimation},
+  volume = {27},
+  ISSN = {2352-7110},
+  url = {http://dx.doi.org/10.1016/j.softx.2024.101785},
+  DOI = {10.1016/j.softx.2024.101785},
+  journal = {SoftwareX},
+  publisher = {Elsevier BV},
+  author = {Ben Abbes,  Ali and Machicao,  Jeaneth and Corr\^ea,  Pedro L.P. and Specht,  Alison and Devillers,  Rodolphe and Ometto,  Jean P. and Kondo,  Yasuhisa and Mouillot,  David},
+  year = {2024},
+  month = sep,
+  pages = {101785}
+}
+```
 ## Required software and library
 
 The main software used was Python 3.7 with TensorFlow r1.15.
@@ -89,7 +108,7 @@ For Japan case, we concentrated in Kita-Tōhoku region, the northernmost part of
 
 ## Trained models (checkpoints)
 
-The checkpoints can be found separately (due to size restrictions) ([DOI](https://doi.org/10.5281/zenodo.10575637])).
+The checkpoints can be found separately (due to size restrictions) ([DOI](https://doi.org/10.5281/zenodo.10575637)).
 
 ---
 
